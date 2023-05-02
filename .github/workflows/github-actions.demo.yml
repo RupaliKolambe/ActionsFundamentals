@@ -1,0 +1,25 @@
+name: Github Actions Demo
+on: 
+  workflow_dispatch:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  schedule:
+  - cron: 15 6 * * 0
+jobs:
+ Build:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Output the name of the event that triggered the workflow
+    - run: |
+           echo "Job is triggered by event ${{github.event_name}}"
+           
+    - name: Output the name of the branch that the repository is currently referencing
+    - run: |
+           echo "The name of the branch that the repository is currently referencing ${{github.ref}}"
+   
+    - name: List all files in the repository
+    - run: |
+           echo "The repository ${{ github.repository }} contains the following files:"
+           tree
